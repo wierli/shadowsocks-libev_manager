@@ -55,7 +55,30 @@ Setp 4 : Register systemd self-startup
 sudo systemctl enable /etc/systemd/system/sslibev.service
 sudo systemctl start sslibev
 ```
-Control command
+Setp 5 : Now you can clone the cp.sh file to your server and use it
+```
+git clone https://github.com/wierli/shadowsocks-libev_manager.git
+cd shadowsocks-libev_manager
+chmod 777 cp.sh
+./cp.sh
+```
+UserInterface
+Enjoy it~
+```
+---------------------------------------------------
+|  This is manage shadowsocks-libev port program   |
+---------------------------------------------------
+1.Create a new port
+2.Change a port
+3.Change a port passwd
+4.Find a port
+5.Delete a port
+6.Limit a port transfer
+7.Unlimit a port transfer
+Enter your choose:
+```
+
+Manual Control command
 ```
 sudo systemctl restart sslibev   # Restart sslibev service
 sudo systemctl disable sslibev   # Disable sslibev self-startup
