@@ -1,5 +1,6 @@
 # shadowsocks-libev_manager
 A bash Script to manager the shadowsocks-libev for multiport
+
 Notice：Default encryption is aes-256-gcm and you can edit the bash file.
 
 Step 1 : Create a bash file in path
