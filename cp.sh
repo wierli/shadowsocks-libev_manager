@@ -54,7 +54,7 @@ esac
 func_update(){
 read -p "Enter the port you want to update:" update_port
 cd $Json_path
-res=`find -type f -name "*.json"|xargs grep "$update_port"`
+res=`find -type f -name "*.json"|xargs grep "$update_port" -l 2 2>/dev/null`
 [ -z "$res" ] && echo "Can not find the port" && exit
 res1=${res%%:*}
 res2=${res1#*/}
@@ -69,7 +69,7 @@ echo "Changed."
 func_changepasswd(){
 read -p "Enter the port you want to update:" update_port
 cd $Json_path
-res3=`find -type f -name "*.json"|xargs grep "$update_port"`
+res3=`find -type f -name "*.json"|xargs grep "$update_port" -l 2 2>/dev/null`
 [ -z "$res3" ] && echo "Can not find the port" && exit
 res4=${res3%%:*}
 res5=${res4#*/}
@@ -91,10 +91,12 @@ echo "Changed."
 func_findport(){
 read -p "Enter the port you want to find:" update_port
 cd $Json_path
-find_res=`find -type f -name "*.json"|xargs grep "$update_port"`
+find_res=`find -type f -name "*.json"|xargs grep "$update_port" -l 2 2>/dev/null`
 [ -z "$find_res" ] && echo "Can not find the port" && exit
 find_res1=${find_res%%:*}
 find_res2=${find_res1#*/}
+#echo $find_res1
+#echo $find_res
 find_theportfilepath=$Json_path"/"$find_res2
 echo "Found it."
 echo $find_theportfilepath
@@ -103,7 +105,7 @@ echo $find_theportfilepath
 func_delete(){
 read -p "Enter the port you want to delete:" delete_port
 cd $Json_path
-delete_res=`find -type f -name "*.json"|xargs grep "$delete_port"`
+delete_res=`find -type f -name "*.json"|xargs grep "$delete_port" -l 2 2>/dev/null`
 [ -z "$delete_res" ] && echo "Can not find the port" && exit
 delete_res1=${delete_res%%:*}
 delete_res2=${delete_res1#*/}
@@ -123,7 +125,7 @@ echo "Deleted success."
 func_limitport(){
 read -p "Enter the port you want to limit:" limit_port
 cd $Json_path
-limit_res=`find -type f -name "*.json"|xargs grep "$limit_port"`
+limit_res=`find -type f -name "*.json"|xargs grep "$limit_port" -l 2 2>/dev/null`
 [ -z "$limit_res" ] && echo "Can not find the port" && exit
 iptables -A OUTPUT -p tcp --sport $limit_port -m quota --quota 257698037760 -j ACCEPT
 iptables -A OUTPUT -p udp --sport $limit_port -m quota --quota 257698037760 -j ACCEPT
@@ -136,7 +138,7 @@ echo "limit the port ${limit_port} successed."
 func_unlimitport(){
 read -p "Enter the port you want to unlimit:" unlimit_port
 cd $Json_path
-unlimit_res=`find -type f -name "*.json"|xargs grep "$unlimit_port"`
+unlimit_res=`find -type f -name "*.json"|xargs grep "$unlimit_port" -l 2 2>/dev/null`
 [ -z "$unlimit_res" ] && echo "Can not find the port" && exit
 iptables -D OUTPUT -p tcp --sport $unlimit_port -m quota --quota 257698037760 -j ACCEPT
 iptables -D OUTPUT -p udp --sport $unlimit_port -m quota --quota 257698037760 -j ACCEPT
