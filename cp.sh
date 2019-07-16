@@ -11,14 +11,13 @@ func_create(){
     echo $res
     echo "---------------------------------------------------"
     echo "Now create a new port."
-    read -p "Enter Json file number:" Number
     read -p "Enter a new port:" Port
     read -p "Enter passwd for the port:" Passwd
     read -p "Limit the port transfer? Enter 1 or 0:" Limit
     echo "---------------------------------------------------"
     echo "It is that right?"
     read -p "Enter the answer in Y/N: " ANSWER
-jsonfile_name=$Json_path"/config_"$Number".json"
+jsonfile_name=$Json_path"/config_"$Port".json"
 case "$ANSWER" in
   [yY] | [yY][eE][sS])
     #write a json file for port
